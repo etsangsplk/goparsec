@@ -1,7 +1,40 @@
 
+Refactor
+========
+
+## Purpose
+The current goparsec API is not user friendly at all. 
+
+We hope to refactor the APi while keeping the power and simplicity of goparsec's parser combinator.
+
+## Features
+
+Single way of defining parsers
+
+```
+parser := parsec.And(
+    parsec.Int("VALUE"), 
+    parsec.Or(
+        parser.Atom("ms", "MILLISECOND"), 
+        parsec.Atom("s", "SECONDS"),
+        "UNIT"
+    )
+    "TIME"
+)
+```
+
+Intuitive use of parsers and scanners
+
+```
+bytes := []byte{...}
+scanner := parsec.NewScanner(bytes)
+
+abstractSyntaxTree := parsec.Parse(parser, scanner)
+```
 
 
 
+```
 type Parser interface {
     Parse: Scanner -> (Maybe ASTNode, Scanner)
 }
@@ -75,4 +108,4 @@ QueryFilter: ASTNode -> ASTNodePredicate -> []ASTNode
 Terminals: ASTNode -> []ASTNode
 QueryMany: ASTNode -> QueryString -> []ASTNode
 QueryOne: ASTNode -> QueryString -> Maybe ASTNode
-
+```
