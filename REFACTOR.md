@@ -33,6 +33,7 @@ abstractSyntaxTree := parsec.Parse(parser, scanner)
 ```
 
 
+## New API
 
 ```
 type Parser interface {
