@@ -97,7 +97,7 @@ func Token(name string, pattern Regex) Parser {
 		news.SkipWS()
 		cursor := news.GetCursor()
 		if tok, _ := news.Match(string(pattern)); tok != nil {
-			return NewTerminal(name, string(tok), Source{"", 0, cursor}), news
+			return NewTerminal(name, string(tok), Source{"", 0, 0, cursor}), news
 		}
 		return nil, s
 	}

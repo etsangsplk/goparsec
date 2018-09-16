@@ -1,15 +1,16 @@
 package v2
 
 type Source struct {
-	File  string
-	Line  int
-	Index int
+	File   string
+	Line   int
+	Index  int
+	Cursor int
 }
 
 type Node interface {
 	Name() string
 	Children() []Node
-	Raw() string
+	Value() string
 	Source() Source
 	IsTerminal() bool
 }
@@ -31,7 +32,7 @@ func (t *terminal) Children() []Node {
 	return []Node{}
 }
 
-func (t *terminal) Raw() string {
+func (t *terminal) Value() string {
 	return t.token
 }
 
@@ -43,10 +44,11 @@ func (t *terminal) IsTerminal() bool {
 	return true
 }
 
-func NewTerminal(name string, token string, source Source) Node {
+// NewTerminal will create and return a new terminal node.
+func NewTerminal(name string, value string, source Source) Node {
 	return &terminal{
 		name,
-		token,
+		value,
 		source,
 	}
 }

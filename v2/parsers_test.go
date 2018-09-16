@@ -27,7 +27,7 @@ var _ = Describe("Parsers", func() {
 			node, newScanner := p(s)
 
 			Expect(node).ShouldNot(BeNil())
-			Expect(node).Should(Equal(gp.NewTerminal("", "a", gp.Source{"", 0, 0})))
+			Expect(node).Should(Equal(gp.NewTerminal("", "a", gp.Source{"", 0, 0, 0})))
 			Expect(newScanner).ShouldNot(Equal(s))
 		})
 
@@ -58,7 +58,7 @@ var _ = Describe("Parsers", func() {
 			node, _ := p(s)
 
 			Expect(node).ShouldNot(BeNil())
-			Expect(node.Raw()).Should(Equal("a"))
+			Expect(node.Value()).Should(Equal("a"))
 		})
 
 		It("Should correctly set the position of the token ignoring leading spaces in the stream", func() {
@@ -68,7 +68,7 @@ var _ = Describe("Parsers", func() {
 			node, _ := p(s)
 
 			Expect(node).ShouldNot(BeNil())
-			Expect(node.Source().Index).Should(Equal(5))
+			Expect(node.Source().Cursor).Should(Equal(5))
 		})
 	})
 })
