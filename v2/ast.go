@@ -3,7 +3,7 @@ package v2
 type Source struct {
 	File  string
 	Line  int
-	Index int
+	Index Cursor
 }
 
 type Node interface {
@@ -14,8 +14,41 @@ type Node interface {
 	IsTerminal() bool
 }
 
+//
+// Terminal
+//
+type terminal struct {
+	name   Identifier
+	token  string
+	source Source
+}
+
+func (t terminal) Name() Identifier {
+	return t.name
+}
+
+func (t terminal) Children() []Node {
+	return []Node{}
+}
+
+func (t terminal) Segment() string {
+	return t.token
+}
+
+func (t terminal) Source() Source {
+	return t.source
+}
+
+func (t terminal) IsTerminal() bool {
+	return true
+}
+
 func NewTerminal(name Identifier, token string, cursor Cursor) Node {
-	return nil
+	return terminal{
+		name,
+		token,
+		Source{"", 0, cursor},
+	}
 }
 
 func NewNonTerminal() Node {
