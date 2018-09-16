@@ -7,11 +7,9 @@ import (
 	goparsec "github.com/bricef/goparsec"
 )
 
-var _ = Describe("V2", func() {
-	Describe("Scanner", func() {
-		It("Should end immediately when created with empty byte stream", func() {
-			s := goparsec.NewScanner([]byte(``))
-			Expect(s.Endof()).Should(BeTrue())
-		})
+var _ = Describe("Scanner", func() {
+	It("Should end immediately when created with empty byte stream", func() {
+		s := goparsec.NewScanner([]byte(``))
+		Expect(s.Endof()).Should(BeTrue())
 	})
 })

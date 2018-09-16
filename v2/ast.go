@@ -3,13 +3,13 @@ package v2
 type Source struct {
 	File  string
 	Line  int
-	Index Cursor
+	Index int
 }
 
 type Node interface {
-	Name() Identifier
+	Name() string
 	Children() []Node
-	Segment() string
+	Raw() string
 	Source() Source
 	IsTerminal() bool
 }
@@ -18,36 +18,36 @@ type Node interface {
 // Terminal
 //
 type terminal struct {
-	name   Identifier
+	name   string
 	token  string
 	source Source
 }
 
-func (t terminal) Name() Identifier {
+func (t *terminal) Name() string {
 	return t.name
 }
 
-func (t terminal) Children() []Node {
+func (t *terminal) Children() []Node {
 	return []Node{}
 }
 
-func (t terminal) Segment() string {
+func (t *terminal) Raw() string {
 	return t.token
 }
 
-func (t terminal) Source() Source {
+func (t *terminal) Source() Source {
 	return t.source
 }
 
-func (t terminal) IsTerminal() bool {
+func (t *terminal) IsTerminal() bool {
 	return true
 }
 
-func NewTerminal(name Identifier, token string, cursor Cursor) Node {
-	return terminal{
+func NewTerminal(name string, token string, source Source) Node {
+	return &terminal{
 		name,
 		token,
-		Source{"", 0, cursor},
+		source,
 	}
 }
 

@@ -82,7 +82,7 @@ func AtomExact(name Identifier, atom string) Parser {
 	return nil
 }
 
-func Token(name Identifier, pattern Regex) Parser {
+func Token(name string, pattern Regex) Parser {
 	if len(pattern) == 0 {
 		return ParseNothing
 	}
@@ -97,7 +97,7 @@ func Token(name Identifier, pattern Regex) Parser {
 		news.SkipWS()
 		cursor := news.GetCursor()
 		if tok, _ := news.Match(string(pattern)); tok != nil {
-			return NewTerminal(name, string(tok), Cursor(cursor)), news
+			return NewTerminal(name, string(tok), Source{"", 0, cursor}), news
 		}
 		return nil, s
 	}

@@ -19,7 +19,7 @@ func FoldUp(root Node, generators []struct {
 	return nil
 }
 
-func IsA(name Identifier) NodePredicate {
+func IsA(name string) NodePredicate {
 	// IsA("FORLOOP")(node) -> T/F
 	return func(n Node) bool {
 		return n.Name() == name
