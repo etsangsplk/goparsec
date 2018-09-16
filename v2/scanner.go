@@ -5,3 +5,4 @@ import (
 )
 
 type Scanner parsec.Scanner
+type Cursor int

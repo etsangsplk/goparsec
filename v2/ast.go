@@ -14,7 +14,7 @@ type Node interface {
 	IsTerminal() bool
 }
 
-func NewTerminal() Node {
+func NewTerminal(name Identifier, token string, cursor Cursor) Node {
 	return nil
 }
 
