@@ -1,14 +1,17 @@
-package v2
+package v2_test
 
 import (
-	"testing"
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
 
 	goparsec "github.com/bricef/goparsec"
 )
 
-func TestScannerCanBeCreatedWithEmtpyString(t *testing.T) {
-	s := goparsec.NewScanner([]byte(``))
-	if !s.Endof() {
-		t.Error("Empty Buffer for scanner should end immediately.")
-	}
-}
+var _ = Describe("V2", func() {
+	Describe("Scanner", func() {
+		It("Should end immediately when created with empty byte stream", func() {
+			s := goparsec.NewScanner([]byte(``))
+			Expect(s.Endof()).Should(BeTrue())
+		})
+	})
+})
