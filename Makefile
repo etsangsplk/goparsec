@@ -1,7 +1,8 @@
 SUBDIRS := json expr
+GOBUILDFLAGS :=-a -v
 
 build:
-	go build -a -v ./...
+	go build $(GOBUILDFLAGS) ./...
 	@for dir in $(SUBDIRS); do \
 		echo $$dir "..."; \
 		$(MAKE) -C $$dir build; \
