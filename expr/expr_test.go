@@ -3,15 +3,27 @@
 
 package expr
 
-import "testing"
+import (
+	"testing"
 
-import "github.com/prataprc/goparsec"
+	parsec "github.com/prataprc/goparsec"
+)
 
 var exprText = `4 + 123 + 23 + 67 +89 + 87 *78
 /67-98-		 199`
 
+var exprText2 = `one plus two minus negative three times ten`
+
 func TestExpr(t *testing.T) {
 	s := parsec.NewScanner([]byte(exprText))
+	v, _ := Y(s)
+	if v.(int) != 110 {
+		t.Fatalf("Mismatch value %v\n", v)
+	}
+}
+
+func TestExpr2(t *testing.T) {
+	s := parsec.NewScanner([]byte(exprText2))
 	v, _ := Y(s)
 	if v.(int) != 110 {
 		t.Fatalf("Mismatch value %v\n", v)
