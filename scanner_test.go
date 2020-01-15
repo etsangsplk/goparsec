@@ -11,6 +11,26 @@ import "fmt"
 
 var _ = fmt.Sprintf("dummy print")
 
+func TestScanText(t *testing.T) {
+	text := []byte(` minus one plus two`)
+	s := NewScanner(text)
+	_, s = s.SkipWS()
+	c := s.GetCursor()
+	fmt.Printf("current cursor :%#v \n", c)
+	ok, s := s.MatchString("minus")
+	c = s.GetCursor()
+	fmt.Printf("matched minus :%#v cursor %v\n", ok, c)
+	ok, s = s.MatchString("one")
+	c = s.GetCursor()
+	fmt.Printf("matched one :%#v cursor %v\n", ok, c)
+	ok, s = s.MatchString("plus")
+	c = s.GetCursor()
+	fmt.Printf("matched plus :%#v cursor %v \n", ok, c)
+	ok, s = s.MatchString("two")
+	c = s.GetCursor()
+	fmt.Printf("matched two :%#v currsor: %v \n", ok, c)
+}
+
 func TestClone(t *testing.T) {
 	text := []byte(`example text`)
 	s := NewScanner(text)
@@ -97,7 +117,7 @@ func TestSkipWS(t *testing.T) {
 }
 
 func TestSkipAny(t *testing.T) {
-	text := `B  
+	text := `B
 			B
 			   BA`
 	s := NewScanner([]byte(text))
