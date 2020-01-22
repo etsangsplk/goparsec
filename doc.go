@@ -19,12 +19,12 @@ text:
 	s := parsec.NewScanner(exprText)
 
 Nodify, callback function is supplied while combining parser
-functions. If the underlying parsing logic matches with i/p text,
+functions. If the underlying parsing logic matches with input text,
 then callback will be dispatched with list of matching ParsecNode.
 Value returned by callback function will further be used as
 ParsecNode item in higher-level list of ParsecNodes.
 
-Parser, simple parsers are functions that matches i/p text for
+Parser, simple parsers are functions that matches input text for
 specific patterns. Simple parsers can be combined using one of the
 supplied combinators to construct a higher level parser. A parser
 function takes a Scanner object and applies the underlying parsing
@@ -34,14 +34,14 @@ forward) is returned. If parser fails to match, it shall return
 the input scanner object as it is, along with nil ParsecNode.
 
 ParsecNode, an interface type encapsulates one or more tokens from
-i/p text, as terminal node or non-terminal node.
+input text, as terminal node or non-terminal node.
 
 Combinators
 
 If input text is going to be a single token like `10` or `true` or
 `"some string"`, then all we need is a single Parser function that
-can tokenize the i/p text into a terminal node. But our applications
-are seldom that simple. Almost all the time we need to parse the i/p
+can tokenize the input text into a terminal node. But our applications
+are seldom that simple. Almost all the time we need to parse the input
 text for more than one tokens and most of the time we need to
 compose them into a tree of terminal and non-terminal nodes.
 
