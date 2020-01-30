@@ -28,7 +28,7 @@ func TestScanText(t *testing.T) {
 	fmt.Printf("matched plus :%#v cursor %v \n", ok, c)
 	ok, s = s.MatchString("two")
 	c = s.GetCursor()
-	fmt.Printf("matched two :%#v currsor: %v \n", ok, c)
+	fmt.Printf("matched two :%#v cursor: %v \n", ok, c)
 }
 
 func TestClone(t *testing.T) {

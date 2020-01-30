@@ -1,10 +1,33 @@
 package parsec
 
-import "fmt"
-import "reflect"
-import "testing"
+import (
+	"fmt"
+	"reflect"
+	"testing"
+)
 
 var _ = fmt.Sprintf("dummy")
+
+func TestNodify(t *testing.T) {
+	s := NewScanner([]byte("one two three"))
+	callbackWhenMatch := func(matchedNode []ParsecNode) ParsecNode {
+		// return unchanged
+		fmt.Printf("matchedNode list: %#v", len(matchedNode))
+		return matchedNode
+	}
+	y := And(callbackWhenMatch, Atom("one ", "TERM"),
+		Atom("two ", "TERM"))
+
+	node, s := y(s)
+	if node == nil {
+		t.Errorf("expected nil")
+	}
+	ss := s.(*SimpleScanner)
+	str := string(ss.buf[ss.cursor:])
+	if str != "three" {
+		t.Errorf("expected %q, got %q cursor %s", "three", str, string(ss.cursor))
+	}
+}
 
 func TestAnd(t *testing.T) {
 	y := And(func(ns []ParsecNode) ParsecNode {

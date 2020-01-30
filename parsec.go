@@ -123,7 +123,7 @@ func Kleene(callb Nodify, parsers ...interface{}) Parser {
 
 // Many combinator accepts two parsers, or reference to
 // parsers, namely opScan and sepScan, where opScan parser
-// will be used to match input string and contruct ParsecNode,
+// will be used to match input string and construct ParsecNode,
 // and sepScan parser will be used to match input string and
 // ignore the matched string. If sepScan parser is not
 // supplied, then opScan parser will be applied on the input

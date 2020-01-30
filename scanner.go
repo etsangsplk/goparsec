@@ -3,12 +3,14 @@
 
 package parsec
 
-import "regexp"
-import "reflect"
-import "unsafe"
-import "unicode"
-import "bytes"
-import "strings"
+import (
+	"bytes"
+	"reflect"
+	"regexp"
+	"strings"
+	"unicode"
+	"unsafe"
+)
 
 // Scanner interface defines necessary methods to match the input stream.
 type Scanner interface {
@@ -72,6 +74,8 @@ type SimpleScanner struct {
 }
 
 // NewScanner create and return a new instance of SimpleScanner object.
+// Returns Scanner because it is as simple as it get to scan an text
+// input stream.
 func NewScanner(text []byte) Scanner {
 	return &SimpleScanner{
 		buf:          text,

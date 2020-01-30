@@ -16,10 +16,12 @@
 
 package expr
 
-import "strconv"
-import "fmt"
+import (
+	"fmt"
+	"strconv"
 
-import "github.com/prataprc/goparsec"
+	parsec "github.com/prataprc/goparsec"
+)
 
 var _ = fmt.Sprintf("dummp print")
 
@@ -93,6 +95,7 @@ func sumNode(ns []parsec.ParsecNode) parsec.ParsecNode {
 	return nil
 }
 
+// Product Node not production node
 func prodNode(ns []parsec.ParsecNode) parsec.ParsecNode {
 	if len(ns) > 0 {
 		val := ns[0].(int)

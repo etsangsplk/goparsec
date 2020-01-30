@@ -4,13 +4,15 @@
 // Package json provide a parser to parse JSON string.
 package json
 
-import "strconv"
-import "unicode"
-import "fmt"
-import "unicode/utf8"
-import "unicode/utf16"
+import (
+	"fmt"
+	"strconv"
+	"unicode"
+	"unicode/utf16"
+	"unicode/utf8"
 
-import "github.com/prataprc/goparsec"
+	parsec "github.com/prataprc/goparsec"
+)
 
 var _ = fmt.Sprintf("dummy print")
 
