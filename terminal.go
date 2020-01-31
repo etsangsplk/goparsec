@@ -11,8 +11,8 @@ type Terminal struct {
 }
 
 // NewTerminal create a new Terminal instance. Supply the name of the
-// terminal, its matching text from i/p stream as value. And its position
-// within the i/p stream.
+// terminal, its matching text from input stream as value. And its position
+// within the input stream.
 func NewTerminal(name, value string, position int) *Terminal {
 	t := &Terminal{
 		Name:       name,
