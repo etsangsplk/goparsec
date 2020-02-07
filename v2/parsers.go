@@ -1,7 +1,5 @@
 package v2
 
-import parsec "github.com/bricef/goparsec/v2"
-
 // Parser function parses input text encapsulated by Scanner, higher
 // order parsers are constructed using combinators.
 type Parser func(Scanner) (Node, Scanner)
@@ -10,7 +8,7 @@ type Regex string
 
 type Identifier string
 
-type ShortCircuitCallback func(Node, parsec.Scanner) Node
+type ShortCircuitCallback func(Node, Scanner) Node
 
 // ParseNothing is a parser that will reject all input as invalid.
 // It will not create a node for any input and return the scanner unchanged.
